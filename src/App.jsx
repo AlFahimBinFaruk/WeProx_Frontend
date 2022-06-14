@@ -13,13 +13,17 @@ function App() {
     if (cityName) {
       setLoading(true);
       try {
-        const res = await Axios.get(`http://localhost:3000/api?q=${cityName}`);
+        const res = await Axios.get(
+          `${process.env.REACT_APP_API_URL}?q=${cityName}`
+        );
         //set weather info
         setWeatherInfo(res.data);
       } catch (error) {
         alert(error.response.data);
       }
       setLoading(false);
+    }else{
+      alert("Give a city name!!")
     }
   };
 
